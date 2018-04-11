@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class CategoriesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(
-        	CategoriesTableSeeder::class
-        );
+        DB::table('categories')->insert([
+            'name' => str_random(10),
+        ]);
     }
 }
