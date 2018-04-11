@@ -11,7 +11,7 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->insert([
+        DB::table('categories', 50)->insert([
             'name' => str_random(10),
         ]);
     }

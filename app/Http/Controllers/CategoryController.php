@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
-class HomeController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Create a new controller instance.
