@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Product;
+use DB;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,7 @@ class CategoryController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -24,6 +26,17 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $categories = Category::all();
+
+        return view('home', ['categories' => $categories]);
+    }
+
+    public function categoryIndex($id)
+    {
+        $products = Category::getProductsByCategory($id);
+
+        $category = DB::table('categories')->where('id', $id)->first();
+
+        return view('category/category', ['category' => $category], ['products' => $products]);
     }
 }

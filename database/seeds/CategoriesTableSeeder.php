@@ -11,8 +11,24 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories', 50)->insert([
-            'name' => str_random(10),
+        DB::table('categories')->insert([
+            'name' => 'Computers',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Auto',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Boot',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Bestek',
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Pokemon',
         ]);
     }
 }

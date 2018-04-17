@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Categories</div>
+                <div class="card-header"><?php echo $product->name; ?></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,10 +13,14 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    @foreach ($categories as $category)
-                         <a href="category/{{$category->id}}">{{$category->name}}</a><br>
-                    @endforeach
+                    <?php echo $product->description ?>   
+                    <h2>
+                        €<?php echo $product->price ?>
+                    </h2>
+                    <form>
+                        <input type="number" placeholder="amount">
+                        <input type="submit" value="Add to cart">
+                    </form>
                 </div>
             </div>
         </div>
