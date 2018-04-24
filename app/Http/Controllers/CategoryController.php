@@ -31,12 +31,10 @@ class CategoryController extends Controller
         return view('home', ['categories' => $categories]);
     }
 
-    public function categoryIndex($id)
+    public function getCategory($id)
     {
-        $products = Category::getProductsByCategory($id);
+        $category = Category::find($id);
 
-        $category = DB::table('categories')->where('id', $id)->first();
-
-        return view('category/category', ['category' => $category], ['products' => $products]);
+        return view('category/category', ['category' => $category]);
     }
 }

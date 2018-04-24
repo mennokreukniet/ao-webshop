@@ -11,15 +11,15 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Auth::routes();
 
-Route::get('/home', 'CategoryController@index')->name('home');
+Route::get('/', 'CategoryController@index')->name('home');
 
-Route::get('/category/{id}', 'CategoryController@categoryIndex')->name('category');
+Route::get('/category/{id}', 'CategoryController@getCategory')->name('category');
 
 Route::get('/product/{id}', 'ProductController@index')->name('product');
 
