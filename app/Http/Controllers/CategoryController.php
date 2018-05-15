@@ -31,6 +31,11 @@ class CategoryController extends Controller
         return view('home', ['categories' => $categories]);
     }
 
+    /**
+     * Show the selected category overview.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getCategory($id)
     {
         $category = Category::find($id);

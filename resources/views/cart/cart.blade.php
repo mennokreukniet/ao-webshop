@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Categories</div>
+                <div class="card-header">Shopping cart</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,9 +14,7 @@
                         </div>
                     @endif
 
-                    @foreach ($categories as $category)
-                         <a href="category/{{$category->id}}">{{$category->name}}</a><br>
-                    @endforeach
+                    
                 </div>
             </div>
         </div>

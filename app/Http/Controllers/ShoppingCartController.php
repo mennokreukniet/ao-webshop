@@ -6,24 +6,17 @@ use Illuminate\Http\Request;
 
 class ShoppingCartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    // private $session;
+    // private $items = [];
+
+    // const CART = 'ShoppingCart'; 
+
+    public function __construct(){
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index()
     {
-        //
+        return view('cart/cart');
     }
 
     /**
