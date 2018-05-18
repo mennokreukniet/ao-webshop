@@ -2,21 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\ShoppingCart;
 use Illuminate\Http\Request;
 
 class ShoppingCartController extends Controller
 {
-    // private $session;
-    // private $items = [];
 
-    // const CART = 'ShoppingCart'; 
+    public function __construct()
+    {
 
-    public function __construct(){
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('cart/cart');
+        $cart = new ShoppingCart($request);
+        //$items = $cart->getAll();
+
+        var_dump($request);
+
+
+
+
+        /*$request->session()->put('sneo', 'nose');
+
+        $data = $request->session()->all();
+
+        dd($data);*/
+
+        return view('cart/cart'/*something something product total price*/);
     }
 
     /**

@@ -17,10 +17,14 @@
                     <h2>
                         €<?php echo $product->price ?>
                     </h2>
-                    <form>
-                        <input type="number" placeholder="amount">
-                        <input type="submit" value="Add to cart">
-                    </form>
+
+                    {{ Form::open(array('url' => '/cart')) }}
+                        {{ Form::hidden('name'),         'echo  $product->name' }}
+                        {{ Form::hidden('price'),        'echo $product->price' }}
+                        {{ Form::hidden('description'),  'echo $product->description' }}
+                        {{ Form::number('amount') }}
+                        {{ Form::submit('submit'),       'Add to cart' }}
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>
