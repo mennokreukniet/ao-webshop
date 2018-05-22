@@ -19,11 +19,9 @@
                     </h2>
 
                     {{ Form::open(array('url' => '/cart')) }}
-                        {{ Form::hidden('name'),         'echo  $product->name' }}
-                        {{ Form::hidden('price'),        'echo $product->price' }}
-                        {{ Form::hidden('description'),  'echo $product->description' }}
+                        {{ Form::hidden('id', $product->id) }}
                         {{ Form::number('amount') }}
-                        {{ Form::submit('submit'),       'Add to cart' }}
+                        {{ Form::submit('submit') }}
                     {{ Form::close() }}
                 </div>
             </div>

@@ -16,18 +16,16 @@ class ShoppingCartController extends Controller
     public function index(Request $request)
     {
         $cart = new ShoppingCart($request);
-        //$items = $cart->getAll();
 
-        var_dump($request);
+        $id   = $request->input('id');
+        $amount = $request->input('amount');
 
-
-
-
-        /*$request->session()->put('sneo', 'nose');
+        $request->session()->put('product_info', $id);
+        $request->session()->put('amount', $amount);
 
         $data = $request->session()->all();
 
-        dd($data);*/
+        dd($data);
 
         return view('cart/cart'/*something something product total price*/);
     }

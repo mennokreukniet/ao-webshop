@@ -23,4 +23,4 @@ Route::get('/category/{id}', 'CategoryController@getCategory')->name('category')
 
 Route::get('/product/{id}', 'ProductController@index')->name('product');
 
-Route::get('/cart', 'ShoppingCartController@index')->name('cart');
+Route::post('/cart', 'ShoppingCartController@index')->name('cart');
