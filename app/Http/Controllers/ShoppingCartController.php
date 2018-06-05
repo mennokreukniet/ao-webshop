@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ShoppingCart;
+use App\Http\Classes\ShoppingCart;
 use Illuminate\Http\Request;
 
 class ShoppingCartController extends Controller
@@ -15,17 +15,25 @@ class ShoppingCartController extends Controller
 
     public function index(Request $request)
     {
-        $cart = new ShoppingCart($request);
+        if ($request->session()->exists('products')) {
+            $cart_products = $request->session()->get('products');
+            $cart = new ShoppingCart($cart_products);
+        } else {
+            $cart = new ShoppingCart();
+        }
+        
+        $product = array( $request->input('id') => $request->input('amount') );
 
-        $id   = $request->input('id');
-        $amount = $request->input('amount');
+        $request->session()->put('products', $product);
 
-        $request->session()->put('product_info', $id);
-        $request->session()->put('amount', $amount);
+        ShoppingCart::add($request);
 
-        $data = $request->session()->all();
+        //$data = $request->session()->all();
 
-        dd($data);
+        //$request->session()->put('key', 'value');
+
+        //$value = $request->session()->get('key');
+        //dd($data);
 
         return view('cart/cart'/*something something product total price*/);
     }

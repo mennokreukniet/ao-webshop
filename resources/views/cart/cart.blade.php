@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <?php //var_dump($data); ?>
+                    {{  }}
                 </div>
             </div>
         </div>
