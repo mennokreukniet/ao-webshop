@@ -20,11 +20,13 @@ class ShoppingCartController extends Controller
             $cart = new ShoppingCart($cart_products);
         } else {
             $cart = new ShoppingCart();
+            $cart_products = array();
         }
         
-        $product = array( $request->input('id') => $request->input('amount') );
+        //$products = array();
+        array_merge( $cart_products, array( $request->input('id') => $request->input('amount') ) );
 
-        $request->session()->put('products', $product);
+        $request->session()->put('products', $cart_products);
 
         ShoppingCart::add($request);
 
