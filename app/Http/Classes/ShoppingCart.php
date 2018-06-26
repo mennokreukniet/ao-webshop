@@ -21,7 +21,7 @@ class ShoppingCart
 
         $cart = new ShoppingCart($cart_products);
 
-        dd($cart);
+       // dd($cart);
     }
 
     public function delete()

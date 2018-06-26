@@ -15,19 +15,18 @@ class ShoppingCartController extends Controller
 
     public function index(Request $request)
     {
+        
         if ($request->session()->exists('products')) {
             $cart_products = $request->session()->get('products');
             $cart = new ShoppingCart($cart_products);
         } else {
             $cart = new ShoppingCart();
-            $cart_products = array();
+            $cart_products = array();        
         }
-        
-        //$products = array();
-        array_merge( $cart_products, array( $request->input('id') => $request->input('amount') ) );
 
+        $newdata = array( (string)$request->input('id') => (string)$request->input('amount') );
+        $cart_products = $cart_products + $newdata;
         $request->session()->put('products', $cart_products);
-
         ShoppingCart::add($request);
 
         //$data = $request->session()->all();
@@ -36,8 +35,9 @@ class ShoppingCartController extends Controller
 
         //$value = $request->session()->get('key');
         //dd($data);
+        //->with('cart', $request->session()->get('products'));
 
-        return view('cart/cart'/*something something product total price*/);
+        return view('cart/cart', ['cart' => $request->session()->get('products')]);
     }
 
     /**
@@ -95,4 +95,15 @@ class ShoppingCartController extends Controller
     {
         //
     }
+
+    private function merge($a1, $a2) {
+
+    $aRes = $a1;
+    foreach ( array_slice ( func_get_args (), 1 ) as $aRay ) {
+        foreach ( array_intersect_key ( $aRay, $aRes ) as $key => $val )
+            $aRes [$key] += $val;
+        $aRes += $aRay;
+    }
+    return $aRes;
+}
 }

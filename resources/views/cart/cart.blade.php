@@ -8,13 +8,19 @@
                 <div class="card-header">Shopping cart</div>
 
                 <div class="card-body">
+
+                    asdf
+                    <pre>
+                            <?=print_r($cart)?>
+                    </pre>
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
+
                         </div>
                     @endif
 
-                    {{  }}
+                   
                 </div>
             </div>
         </div>
