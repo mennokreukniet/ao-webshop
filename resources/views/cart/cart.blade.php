@@ -8,8 +8,6 @@
                 <div class="card-header">Shopping cart</div>
 
                 <div class="card-body">
-
-                    asdf
                     <pre>
                             <?=print_r($cart)?>
                     </pre>

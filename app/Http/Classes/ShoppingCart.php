@@ -15,13 +15,18 @@ class ShoppingCart
     	$this->products = $cart_products;
     }
 
-    public static function add($request)
+    public static function add($request, $id, $amount)
     {
         $cart_products = $request->session()->get('products');
 
         $cart = new ShoppingCart($cart_products);
 
-       // dd($cart);
+        $item = new Item($request->input('id'), $request->input('amount'));
+        
+        $request->session()->push('products', $item);
+
+        //$newdata = array( (string)$request->input('id') => (string)$request->input('amount') );
+        //$cart_products = $cart_products + $newdata;
     }
 
     public function delete()

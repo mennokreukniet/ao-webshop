@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Classes\ShoppingCart;
 use Illuminate\Http\Request;
+use App\Http\Classes\Item;
 
 class ShoppingCartController extends Controller
 {
@@ -24,20 +25,25 @@ class ShoppingCartController extends Controller
             $cart_products = array();        
         }
 
-        $newdata = array( (string)$request->input('id') => (string)$request->input('amount') );
-        $cart_products = $cart_products + $newdata;
-        $request->session()->put('products', $cart_products);
-        ShoppingCart::add($request);
+        $id     = $request->input('id');
+        $amount = $request->input('amount');
 
-        //$data = $request->session()->all();
+        $cart = new ShoppingCart($cart_products);
+        $cart->add($request, $id, $amount);
 
-        //$request->session()->put('key', 'value');
 
-        //$value = $request->session()->get('key');
-        //dd($data);
-        //->with('cart', $request->session()->get('products'));
+        //$this->loop($request);
 
         return view('cart/cart', ['cart' => $request->session()->get('products')]);
+    }
+
+    public function loop($request)
+    {
+        $cart_products = $request->session()->get('products');
+
+        foreach ($cart_products as $cart_product) {
+            echo $cart_product;
+        }
     }
 
     /**
@@ -95,15 +101,4 @@ class ShoppingCartController extends Controller
     {
         //
     }
-
-    private function merge($a1, $a2) {
-
-    $aRes = $a1;
-    foreach ( array_slice ( func_get_args (), 1 ) as $aRay ) {
-        foreach ( array_intersect_key ( $aRay, $aRes ) as $key => $val )
-            $aRes [$key] += $val;
-        $aRes += $aRay;
-    }
-    return $aRes;
-}
 }
